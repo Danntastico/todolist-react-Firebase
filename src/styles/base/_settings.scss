@@ -1,3 +1,4 @@
+//Color palette
 $bg-color: #f3f5fa;
 $btn-color: #425195;
 $green-color: #2dc09d;
@@ -6,3 +7,8 @@ $titles-color: #010c3b;
 $text-color: #333d69;
 $white-color: #ffffff;
 $gray-color: #b8bbc3;
+
+//Breakpoints for window size
+$break-small: 576px;
+$break-medium: 768px;
+$break-large: 992px;

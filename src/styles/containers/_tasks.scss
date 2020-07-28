@@ -1,0 +1,50 @@
+.tasks {
+  div {
+    margin-bottom: 12px;
+  }
+  @media screen and (min-width: $break-medium) {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    margin: 20px 0;
+  }
+}
+.tasks__header {
+  margin: {
+    top: 23px;
+    bottom: 12px;
+  }
+  @media screen and (min-width: $break-small) {
+    width: 100vw;
+    display: flex;
+  }
+  @media screen and (min-width: $break-medium) {
+    display: none;
+  }
+}
+
+.tasks__aside {
+  display: none;
+  @media screen and (min-width: $break-medium) {
+    display: block;
+  }
+}
+
+.description {
+  @extend %box-shadow;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  h1 {
+    font-size: 19px;
+    font-weight: 700;
+    color: $titles-color;
+    margin-right: 8px;
+  }
+  p {
+    font-weight: 700;
+    color: $btn-color;
+    font-size: 13px;
+  }
+}

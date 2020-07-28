@@ -10,6 +10,18 @@
 body {
   background-color: $bg-color;
 }
+.container {
+  margin: 0px 16px;
+  position: relative;
+  @media screen and (min-width: $break-small) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    div {
+      max-width: 550px;
+    }
+  }
+}
 
 .btn {
   background-color: $btn-color;
