@@ -1,0 +1,30 @@
+* {
+  margin: 0px;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $bg-color;
+}
+
+.btn {
+  background-color: $btn-color;
+  color: $white-color;
+  border-style: none;
+  font-weight: bold;
+}
+
+%box-shadow {
+  -webkit-box-shadow: 0px 4px 16px 0px rgba(71, 87, 162, 0.34);
+  -moz-box-shadow: 0px 4px 16px 0px rgba(71, 87, 162, 0.34);
+  box-shadow: 0px 4px 16px 0px rgba(71, 87, 162, 0.34);
+}
+
+%coverimg {
+  object-fit: cover;
+  border-radius: 50%;
+}
