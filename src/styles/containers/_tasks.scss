@@ -1,22 +1,9 @@
-.tasks {
-  div {
-    margin-bottom: 12px;
-  }
-  @media screen and (min-width: $break-medium) {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    margin: 20px 0;
-  }
-}
 .tasks__header {
   margin: {
     top: 23px;
     bottom: 12px;
   }
   @media screen and (min-width: $break-small) {
-    width: 100vw;
     display: flex;
   }
   @media screen and (min-width: $break-medium) {
@@ -24,15 +11,7 @@
   }
 }
 
-.tasks__aside {
-  display: none;
-  @media screen and (min-width: $break-medium) {
-    display: block;
-  }
-}
-
 .description {
-  @extend %box-shadow;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -46,5 +25,27 @@
     font-weight: 700;
     color: $btn-color;
     font-size: 13px;
+  }
+}
+.addTask {
+  @extend %box-shadow;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: $green-color;
+}
+
+.tasks__list {
+  @media screen and (min-width: $break-medium) {
+    margin: 20px 0px;
+    div {
+      max-width: 550px;
+    }
+  }
+  @media screen and (min-width: $break-large) {
+    display: block;
+    column-count: 2;
+    div {
+      max-width: 760px;
+    }
   }
 }

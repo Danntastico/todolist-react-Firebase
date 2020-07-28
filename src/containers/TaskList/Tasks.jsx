@@ -1,6 +1,7 @@
 import React from 'react';
 import { Task } from '../../components/Task/Task';
 import { FloatingBtn } from '../../components/floatingBtn/FloatingBtn';
+import { AsideNav } from '../../components/asideNavbar/AsideNav';
 
 export const Tasks = () => {
   return (
@@ -11,12 +12,7 @@ export const Tasks = () => {
           <p>(3 asignadas)</p>
         </div>
       </div>
-      <div className='tasks__aside'>
-        <div className='description'>
-          <h1>Tareas</h1>
-          <p>(3 asignadas)</p>
-        </div>
-      </div>
+      <AsideNav />
       <div className='tasks__list'>
         <Task />
         <Task />
