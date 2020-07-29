@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from '../../hooks/useForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { startGettingSingleTodo } from '../../store/actions/todos';
+import { useParams } from 'react-router-dom';
 
-export const TodoDetail = ({
-  description,
-  dueDate,
-  id,
-  status,
-  title,
-  author,
-  realTime,
-  photoURL,
-}) => {
+export const TodoDetail = ({}) => {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const { currentTodo } = useSelector((state) => state.tasks);
+  const { title, description, status, dueDate } = currentTodo;
   const [inputValues, handleInputChange] = useForm({
-    title: title,
-    description: description,
-    status: status,
-    dueDate: dueDate,
+    inputTitle: title,
+    inputDescription: description,
+    inputStatus: status,
+    inputDueDate: dueDate,
   });
 
+  const { taskId: id } = params;
+  const {
+    inputTitle,
+    inputDescription,
+    inputStatus,
+    inputDueDate,
+  } = inputValues;
+
+  useEffect(() => {
+    dispatch(startGettingSingleTodo(id));
+  }, []);
+
+  const photoURL = '';
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
 
   const handleSubmit = (e) => {
@@ -25,50 +36,37 @@ export const TodoDetail = ({
   };
 
   return (
-    <>
+    <div>
       <form className='detail' onSubmit={handleSubmit}>
         <div className='detail__info'>
           <input
-            className='addForm__input detail__title'
+            className='detail__title'
             type='text'
             name='title'
             id='title'
-            placeholder='Titulo de la tarea'
             autoComplete='off'
-            value={title}
+            value={inputTitle}
             onChange={handleInputChange}
             disabled={true}
           />
-          <input
-            className='addForm__input detail__description'
-            type='text'
-            name='description'
-            id='description'
-            placeholder='Titulo de la tarea'
-            autoComplete='off'
-            value={description}
-            onChange={handleInputChange}
-            disabled={true}
-          />
-        </div>
-        <div className='detail__dueDate'>
-          <i className='fas fa-calendar-alt'></i>
           <textarea
             className='addForm__textarea'
             type='text'
             name='description'
             id='description'
-            placeholder='Descripción de la tarea'
             autoComplete='off'
-            value={description}
+            value={inputDescription}
             onChange={handleInputChange}
           />
         </div>
+        <div className='detail__dueDate'>
+          <i className='fas fa-calendar-alt'></i>
+        </div>
         <div className='detail__author'>
           <img src={imgsrc} alt='profile' className='detail__img' />
-          <p className='detail__author'>{author}</p>
+          <p className='detail__author'>{/* author */}</p>
         </div>
       </form>
-    </>
+    </div>
   );
 };

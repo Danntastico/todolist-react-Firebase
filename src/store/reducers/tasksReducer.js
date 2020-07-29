@@ -6,6 +6,13 @@ import { types } from '../../types/types';
  */
 const initialState = {
   todos: [],
+  currentTodo: {
+    description: '',
+    dueDate: '',
+    status: '',
+    title: '',
+    id: '',
+  },
 };
 
 export const taskReducer = (state = initialState, action) => {
@@ -39,6 +46,12 @@ export const taskReducer = (state = initialState, action) => {
               }
             : i
         ),
+      };
+    }
+    case types.todosGetSingle: {
+      return {
+        ...state,
+        currentTodo: action.payload,
       };
     }
     default:

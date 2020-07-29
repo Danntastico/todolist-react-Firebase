@@ -1,6 +1,6 @@
 import { db } from '../../firebase/firebase-config';
 import { types } from '../../types/types';
-import { loadTodos } from '../../helpers/loadTodos';
+import { loadTodos, getTodo } from '../../helpers/loadTodos';
 import Swal from 'sweetalert2';
 
 export const startNewTodo = (title, description, dueDate) => {
@@ -56,6 +56,15 @@ export const startUpdatingStatus = (id, todo, status) => {
     dispatch(updateTodoStatus(id, status));
   };
 };
+
+export const startGettingSingleTodo = (id) => {
+  return async (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    const todo = await getTodo(uid, id);
+    dispatch(getSingleTodo(todo));
+  };
+};
+
 export const updateTodoStatus = (id, status) => ({
   type: types.todosSetStatus,
   payload: {
@@ -70,6 +79,11 @@ export const addNewTodo = (id, todo) => ({
     id,
     ...todo,
   },
+});
+
+export const getSingleTodo = (todo) => ({
+  type: types.todosGetSingle,
+  payload: todo,
 });
 
 export const deleteTodo = (id) => ({

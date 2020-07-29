@@ -16,5 +16,6 @@ export const types = {
   todosLoad: '[todos] Load todos',
   todosUpdated: '[todos] Update todo',
   todosDelete: '[todos] Delete todo',
+  todosGetSingle: '[todos] Get Single todo',
   todosLogoutCleaner: '[todos] Logout Cleaner',
 };

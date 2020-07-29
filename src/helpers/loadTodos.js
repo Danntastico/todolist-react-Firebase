@@ -12,3 +12,10 @@ export const loadTodos = async (uid) => {
 
   return notes;
 };
+
+export const getTodo = async (uid, id) => {
+  /* const todoSnapshot = await db.collection(`${uid}/tasks/todos/`).get(); */
+  const docRef = await db.doc(`${uid}/tasks/todos/${id}`).get();
+  const todo = docRef.data();
+  return todo;
+};
