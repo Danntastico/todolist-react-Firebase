@@ -1,9 +1,13 @@
 import React from 'react';
 import { IntlProvider, FormattedDate } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../store/actions/auth';
 
 export const AsideNav = ({ handleClick }) => {
+  const { photoURL } = useSelector((state) => state.auth);
+
+  const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
+
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(startLogout());
@@ -35,11 +39,7 @@ export const AsideNav = ({ handleClick }) => {
           </p>
         </div>
         <div className='profile__menu pointer'>
-          <img
-            src='assets/profilepic.jpg'
-            alt='profile_picture'
-            className='profilePicture'
-          />
+          <img src={imgsrc} alt='profile_picture' className='profilePicture' />
           <div className='profile__opts'>
             <div className='opts__item pointer' onClick={handleLogout}>
               <i className='fas fa-sign-out-alt'></i>

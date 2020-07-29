@@ -1,4 +1,7 @@
 import React from 'react';
+import { remainTimeCalculator } from '../../helpers/remainTimeCalculator';
+import { useDispatch } from 'react-redux';
+import { startDeletingTodo } from '../../store/actions/todos';
 
 export const SingleTask = ({
   description,
@@ -7,7 +10,15 @@ export const SingleTask = ({
   status,
   title,
   author,
+  realTime,
+  photoURL,
 }) => {
+  const dispatch = useDispatch();
+  const handleDeleteTask = () => {
+    dispatch(startDeletingTodo(id));
+  };
+  const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
+
   return (
     <div className='taskContainer'>
       <div className='task__header'>
@@ -15,12 +26,12 @@ export const SingleTask = ({
         <button className='timeAdd btn'>Agregar tiempo</button>
       </div>
       <div className='userInfo'>
-        <img src='assets/profilepic.jpg' alt='' className='userInfo__picture' />
+        <img src={imgsrc} alt='' className='userInfo__picture' />
         <p className='userInfo__name'>{author}</p>
         <div className='userInfo__timeLeft'>
           <i className='far fa-clock'></i>
           <p>
-            Tiempo restante <span>12</span> hrs
+            Tiempo restante <span></span> hrs
           </p>
         </div>
       </div>
@@ -35,7 +46,7 @@ export const SingleTask = ({
               <i className='fas fa-eye'></i>
               <p>Ver tarea</p>
             </div>
-            <div className='menuOptions_Item'>
+            <div className='menuOptions_Item' onClick={handleDeleteTask}>
               <i className='fas fa-trash'></i>
               <p>Borrar</p>
             </div>
