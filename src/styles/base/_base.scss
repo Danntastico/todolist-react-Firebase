@@ -45,3 +45,49 @@ body {
   object-fit: cover;
   border-radius: 50%;
 }
+
+/*General Forms style*/
+.form__main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-color;
+}
+
+.form:last-child {
+  padding-bottom: 20px;
+}
+
+.form {
+  @extend %box-shadow;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 5px;
+  padding: 20px 20px 10px 20px;
+
+  width: 250px;
+}
+.form__title {
+  color: $titles-color;
+  text-transform: capitalize;
+}
+
+.form input {
+  background: none;
+  border: none;
+  border-bottom: solid 1px $green-color;
+  margin: 10px 0px;
+  padding-left: 10px;
+}
+
+.form textarea {
+  @extend %box-shadow;
+  background: none;
+  border-radius: 10px;
+  border: solid 1px $green-color;
+  margin: 10px 0px 5px 0px;
+  padding: 10px;
+}

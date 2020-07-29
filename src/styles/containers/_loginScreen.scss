@@ -1,0 +1,25 @@
+.form__btn {
+  padding: 10px 0;
+  border-radius: 5px;
+}
+
+.googleLogin {
+  @extend %box-shadow;
+  margin-top: 15px;
+  display: flex;
+  padding: 10px;
+  background-color: $green-color;
+  align-items: center;
+  border-radius: 2px;
+}
+.googleLogin__label {
+  font-size: 1em;
+  color: $white-color;
+  font-weight: bold;
+}
+
+.googleLogin__icon {
+  font-size: 1.5em;
+  margin-right: 20px;
+  color: $white-color;
+}

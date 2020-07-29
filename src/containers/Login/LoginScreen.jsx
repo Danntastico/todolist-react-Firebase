@@ -1,31 +1,35 @@
 import React from 'react';
 import { useForm } from '../../hooks/useForm';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { startLoginEmailPassword } from '../../store/actions/auth';
 
 export const LoginScreen = () => {
   const { loading } = useSelector((state) => state.ui);
+  const dispatch = useDispatch();
 
   const [inputValues, handleInputChange] = useForm({
-    email: '',
-    password: '',
+    email: 'admin@mail.com',
+    password: '123456',
   });
 
   const { email, password } = inputValues;
   const handleLogin = (e) => {
     e.preventDefault();
+    dispatch(startLoginEmailPassword(email, password));
   };
 
-  const handleGoogleLogin = (params) => {};
+  const handleGoogleLogin = () => {};
 
   return (
     <div className='form__main'>
-      <form action='addQuote' className='form' onSubmit={handleLogin}>
+      <form action='login' className='form' onSubmit={handleLogin}>
         <h2 className='form__title'>Login</h2>
         <input
           type='email'
           name='email'
           id='email'
           placeholder='e-mail'
+          autoComplete='off'
           value={email}
           onChange={handleInputChange}
         />
@@ -48,9 +52,6 @@ export const LoginScreen = () => {
             <h2 className='googleLogin__label'>Login with google</h2>
           </div>
         </div>
-        <a href='register.html' className='link'>
-          Create new Account
-        </a>
       </form>
     </div>
   );
