@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { FloatingBtn } from '../../components/floatingBtn/FloatingBtn';
-import { AsideNav } from '../../components/asideNavbar/AsideNav';
 import { AddTaskModal } from '../../components/modals/AddTaskModal';
 import { TaskListHeader } from '../../components/taskEntries/TaskListHeader';
 import { SingleTask } from '../../components/taskEntries/SingleTask';
@@ -10,7 +8,7 @@ import { SingleTask } from '../../components/taskEntries/SingleTask';
 import moment from 'moment';
 import { TaskEntries } from '../../components/taskEntries/TaskEntries';
 import { startUpdatingStatus } from '../../store/actions/todos';
-import { openCloseModal, closeModal, openModal } from '../../store/actions/ui';
+import { closeModal, openModal } from '../../store/actions/ui';
 import { LoadingView } from '../../components/loadingView/LoadingView';
 
 export const HomeScreen = () => {
