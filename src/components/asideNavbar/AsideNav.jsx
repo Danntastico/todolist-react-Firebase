@@ -15,7 +15,7 @@ export const AsideNav = () => {
           <h1>Tareas</h1>
           <p>(3 asignadas)</p>
         </div>
-        <button className='addTask btn'>
+        <button className='addTask btn pointer'>
           <i className='fas fa-plus'></i>
           Agregar tarea
         </button>
@@ -42,7 +42,7 @@ export const AsideNav = () => {
           />
           <div className='profile__opts'>
             <div className='opts__item pointer' onClick={handleLogout}>
-              <i class='fas fa-sign-out-alt'></i>
+              <i className='fas fa-sign-out-alt'></i>
               <p>Logout</p>
             </div>
           </div>

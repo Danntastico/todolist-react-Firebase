@@ -8,7 +8,7 @@ export const FloatingBtn = () => {
     dispatch(startNewNote());
   };
   return (
-    <button className='floatingBtn btn' onClick={handleAddNew}>
+    <button className='floatingBtn btn pointer' onClick={handleAddNew}>
       <i className='fas fa-plus'></i>
     </button>
   );

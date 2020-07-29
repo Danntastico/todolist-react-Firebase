@@ -41,7 +41,7 @@ export const LoginScreen = () => {
           value={password}
           onChange={handleInputChange}
         />
-        <button type='submit' className='btn form__btn' disabled={loading}>
+        <button type='submit' className='btn form__btn pointer'>
           Login
         </button>
         <div className='googleLogin pointer' onClick={handleGoogleLogin}>

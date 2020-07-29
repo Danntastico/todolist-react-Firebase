@@ -11,7 +11,7 @@ export const Tasks = () => {
     <>
       <AsideNav />
       <div className='tasks container'>
-        {todos.length === 0 ? (
+        {todos.length !== 0 ? (
           <h1> Aun no tiene tareas </h1>
         ) : (
           <>

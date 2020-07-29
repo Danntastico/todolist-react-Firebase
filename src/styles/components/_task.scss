@@ -1,7 +1,7 @@
 .taskContainer {
   display: flex;
   flex-direction: column;
-  padding: 21px 18px;
+  padding: 8px 18px 21px;
   background-color: $white-color;
   border-radius: 8px;
   margin-bottom: 12px;
@@ -69,6 +69,7 @@
   font-size: 16px;
   font-size: 700;
   color: $text-color;
+  padding-bottom: 8px;
 }
 
 .taskContent__description {
@@ -76,7 +77,7 @@
   font-weight: 600;
   line-height: 1.385;
   color: $text-color;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .taskContent__menu {
