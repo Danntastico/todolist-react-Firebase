@@ -6,8 +6,9 @@ import { firebase } from '../firebase/firebase-config';
 import { login } from '../store/actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
-import { Tasks } from '../containers/TaskList/Tasks';
+import { HomeScreen } from '../containers/homeScreen/HomeScreen';
 import { AuthRouter } from './AuthRouter';
+import { startLoadingTodos } from '../store/actions/todos';
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -16,10 +17,11 @@ export const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
+        dispatch(startLoadingTodos(user.uid));
       } else {
         setIsLoggedIn(false);
       }
@@ -44,7 +46,7 @@ export const AppRouter = () => {
             exact
             isAuthenticated={isLoggedIn}
             path='/'
-            component={Tasks}
+            component={HomeScreen}
           />
           <Redirect to='/auth/login' />
         </Switch>
