@@ -8,7 +8,7 @@ export const startGoogleLogin = () => {
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {
-        dispatch(login(user.uid, user.displayName));
+        dispatch(login(user.uid, user.displayName, user.photoURL));
       });
   };
 };
@@ -20,7 +20,7 @@ export const startLoginEmailPassword = (email, password) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(({ user }) => {
-        dispatch(login(user.uid, user.displayName));
+        dispatch(login(user.uid, user.displayName, ''));
         dispatch(finishLoading());
       })
       .catch((e) => {
@@ -30,12 +30,13 @@ export const startLoginEmailPassword = (email, password) => {
   };
 };
 
-export const login = (uid, displayName) => {
+export const login = (uid, displayName, photoURL) => {
   return {
     type: types.login,
     payload: {
       uid,
       displayName,
+      photoURL,
     },
   };
 };
