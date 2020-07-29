@@ -1,7 +1,10 @@
 import React from 'react';
 import { useForm } from '../../hooks/useForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { startLoginEmailPassword } from '../../store/actions/auth';
+import {
+  startLoginEmailPassword,
+  startGoogleLogin,
+} from '../../store/actions/auth';
 
 export const LoginScreen = () => {
   const { loading } = useSelector((state) => state.ui);
@@ -17,7 +20,9 @@ export const LoginScreen = () => {
     dispatch(startLoginEmailPassword(email, password));
   };
 
-  const handleGoogleLogin = () => {};
+  const handleGoogleLogin = () => {
+    dispatch(startGoogleLogin());
+  };
 
   return (
     <div className='form__main'>
