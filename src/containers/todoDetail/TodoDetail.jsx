@@ -17,6 +17,7 @@ export const TodoDetail = ({
     status: status,
     dueDate: dueDate,
   });
+
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
 
   const handleSubmit = (e) => {
