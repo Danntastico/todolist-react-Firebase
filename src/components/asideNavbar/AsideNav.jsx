@@ -3,7 +3,7 @@ import { IntlProvider, FormattedDate } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { startLogout } from '../../store/actions/auth';
 
-export const AsideNav = () => {
+export const AsideNav = ({ handleClick }) => {
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(startLogout());
@@ -15,7 +15,7 @@ export const AsideNav = () => {
           <h1>Tareas</h1>
           <p>(3 asignadas)</p>
         </div>
-        <button className='addTask btn pointer'>
+        <button className='addTask btn pointer' onClick={handleClick}>
           <i className='fas fa-plus'></i>
           Agregar tarea
         </button>
