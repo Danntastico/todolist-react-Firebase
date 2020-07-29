@@ -12,6 +12,6 @@ export const types = {
   todosSetStatus: '[todos] Set status', //Active or Finished
   todosLoad: '[todos] Load todos',
   todosUpdated: '[todos] Update todo',
-  todosDeleted: '[todos] Delete todo',
+  todosDelete: '[todos] Delete todo',
   todosLogoutCleaner: '[todos] Logout Cleaner',
 };
