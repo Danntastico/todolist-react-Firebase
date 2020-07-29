@@ -6,9 +6,10 @@ import { firebase } from '../firebase/firebase-config';
 import { login } from '../store/actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
-import { HomeScreen } from '../containers/homeScreen/HomeScreen';
 import { AuthRouter } from './AuthRouter';
 import { startLoadingTodos } from '../store/actions/todos';
+import { DashboardRoutes } from './DashBoardRoutes';
+import { LoadingView } from '../components/loadingView/LoadingView';
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ export const AppRouter = () => {
   }, [dispatch, setChecking, setIsLoggedIn]);
 
   if (checking) {
-    return <h1>Espere...</h1>;
+    return <LoadingView />;
   }
   return (
     <Router>
@@ -43,10 +44,9 @@ export const AppRouter = () => {
             isAuthenticated={isLoggedIn}
           />
           <PrivateRoute
-            exact
             isAuthenticated={isLoggedIn}
             path='/'
-            component={HomeScreen}
+            component={DashboardRoutes}
           />
           <Redirect to='/auth/login' />
         </Switch>

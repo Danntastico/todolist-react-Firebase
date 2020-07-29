@@ -3,12 +3,14 @@
 @import './base/base';
 
 //components
-@import './components/task';
+@import './components/singleTask';
 @import './components/floatingBtn';
 @import './components/asideNav';
 @import './components/addTaskModal';
 @import './components/errorMsg';
+@import './components/tasklistHeader';
+@import './components/loadingView';
 
 //containers
-@import './containers/tasks';
+@import './containers/homeScreen';
 @import './containers/loginScreen';

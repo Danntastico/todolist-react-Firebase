@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { FloatingBtn } from '../../components/floatingBtn/FloatingBtn';
 import { AsideNav } from '../../components/asideNavbar/AsideNav';
@@ -9,34 +9,20 @@ import { SingleTask } from '../../components/taskEntries/SingleTask';
 
 import moment from 'moment';
 import { TaskEntries } from '../../components/taskEntries/TaskEntries';
+import { startUpdatingStatus } from '../../store/actions/todos';
+import { openCloseModal, closeModal, openModal } from '../../store/actions/ui';
+import { LoadingView } from '../../components/loadingView/LoadingView';
 
 export const HomeScreen = () => {
-  const [loading, setLoading] = useState(true);
   const { todos } = useSelector((state) => state.tasks);
   const { name, photoURL } = useSelector((state) => state.auth);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { modalIsOpen } = useSelector((state) => state.ui);
+
+  const sortedTodos = todos.sort((i) => i.status);
+  const [loading, setLoading] = useState(true);
   const [realTime, setRealTime] = useState(moment(), 'YYYY-MM-DD hh:mm:ss');
-  console.log(name);
-  const addTaskModal = () => {
-    setModalIsOpen(true);
-  };
 
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
-  };
-
-  const thick = () => {
-    setInterval(() => {
-      setRealTime(moment(moment(), 'YYYY-MM-DD hh:mm:ss'));
-    }, 1000);
-  };
-
-  /* useEffect(() => {
-    thick();
-    return () => {
-      clearInterval(thick);
-    };
-  }, [realTime.getSeconds]); */
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!todos) {
@@ -46,37 +32,48 @@ export const HomeScreen = () => {
     }
   }, [todos]);
 
+  const handleChangeStatus = (id, status) => {
+    const targetTodo = todos.filter((i) => i.id === id);
+    dispatch(startUpdatingStatus(id, targetTodo[0], status));
+  };
+
+  const handleCloseModal = () => {
+    dispatch(closeModal());
+  };
+  const handleOpenModal = () => {
+    dispatch(openModal());
+  };
+
   return (
     <>
-      <AsideNav handleClick={addTaskModal} />
       {loading ? (
-        <h1>Loading!</h1>
+        <LoadingView />
       ) : (
-        <div className='tasks container'>
+        <>
           {todos.length === 0 ? (
             <h1> Aun no tiene tareas </h1>
           ) : (
-            <>
+            <div>
               <TaskListHeader />
               <TaskEntries>
-                {todos.map((todo) => (
+                {sortedTodos.map((todo) => (
                   <SingleTask
                     key={todo.id}
                     author={name}
                     photoURL={photoURL}
+                    handleChangeStatus={handleChangeStatus}
                     {...todo}
                   />
                 ))}
               </TaskEntries>
-            </>
+              <AddTaskModal
+                modalIsOpen={modalIsOpen}
+                closeModal={handleCloseModal}
+                currentTime={realTime.format('yyyy-MM-DDThh:mm')}
+              />
+            </div>
           )}
-          <AddTaskModal
-            modalIsOpen={modalIsOpen}
-            closeModal={handleCloseModal}
-            currentTime={realTime.format('yyyy-MM-DDThh:mm')}
-          />
-          <FloatingBtn handleClick={addTaskModal} />
-        </div>
+        </>
       )}
     </>
   );

@@ -10,7 +10,7 @@ export const startNewTodo = (title, description, dueDate) => {
     const newTodo = {
       title,
       description,
-      status: 'active',
+      status: 'activa',
       dueDate,
     };
     const docRef = await db.collection(`${uid}/tasks/todos`).add(newTodo);
@@ -32,14 +32,6 @@ export const startLoadingTodos = (uid) => {
   };
 };
 
-export const addNewTodo = (id, todo) => ({
-  type: types.todosAddNew,
-  payload: {
-    id,
-    ...todo,
-  },
-});
-
 export const startDeletingTodo = (id) => {
   return async (dispatch, getState) => {
     const uid = getState().auth.uid;
@@ -57,6 +49,29 @@ export const startDeletingTodo = (id) => {
   };
 };
 
+export const startUpdatingStatus = (id, todo, status) => {
+  return async (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    await db.doc(`${uid}/tasks/todos/${id}`).update({ ...todo, status });
+    dispatch(updateTodoStatus(id, status));
+  };
+};
+export const updateTodoStatus = (id, status) => ({
+  type: types.todosSetStatus,
+  payload: {
+    id,
+    status,
+  },
+});
+
+export const addNewTodo = (id, todo) => ({
+  type: types.todosAddNew,
+  payload: {
+    id,
+    ...todo,
+  },
+});
+
 export const deleteTodo = (id) => ({
   type: types.todosDelete,
   payload: id,
@@ -66,5 +81,3 @@ export const setTodo = (todos) => ({
   type: types.todosLoad,
   payload: todos,
 });
-
-export const refreshTodoList = () => {};

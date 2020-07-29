@@ -8,6 +8,9 @@ export const types = {
   uiStartLoading: '[UI] Start loading',
   uiFinishLoading: '[UI] Finish loading',
 
+  uiCloseModal: '[UI] Close Modal',
+  uiOpenModal: '[UI] Open Modal',
+
   todosAddNew: '[todos] New todo', //
   todosSetStatus: '[todos] Set status', //Active or Finished
   todosLoad: '[todos] Load todos',

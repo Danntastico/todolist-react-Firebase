@@ -1,0 +1,12 @@
+.tasksList__header {
+  margin: {
+    top: 23px;
+    bottom: 12px;
+  }
+  @media screen and (min-width: $break-small) {
+    display: flex;
+  }
+  @media screen and (min-width: $break-medium) {
+    display: none;
+  }
+}

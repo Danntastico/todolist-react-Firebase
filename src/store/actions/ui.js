@@ -15,3 +15,12 @@ export const startLoading = () => ({
 export const finishLoading = () => ({
   type: types.uiFinishLoading,
 });
+
+export const openModal = () => ({
+  type: types.uiOpenModal,
+  payload: true,
+});
+export const closeModal = () => ({
+  type: types.uiCloseModal,
+  payload: false,
+});

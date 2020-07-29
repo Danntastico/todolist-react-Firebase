@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Modal from 'react-modal';
-import moment from 'moment';
 import { useForm } from '../../hooks/useForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { setError, removeError } from '../../store/actions/ui';
@@ -51,7 +50,7 @@ export const AddTaskModal = ({ modalIsOpen, closeModal, currentTime }) => {
     >
       <h1 className='modal__title'>Add a new Task</h1>
       {msgError && <ErrorMsg message={msgError} />}
-      <form className='addForm'>
+      <form className='addForm' onSubmit={handleSubmit}>
         <input
           className='addForm__input'
           type='text'

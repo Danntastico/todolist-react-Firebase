@@ -2,6 +2,7 @@ import React from 'react';
 import { IntlProvider, FormattedDate } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../store/actions/auth';
+import { openModal } from '../../store/actions/ui';
 
 export const AsideNav = ({ handleClick }) => {
   const { photoURL } = useSelector((state) => state.auth);
@@ -12,6 +13,7 @@ export const AsideNav = ({ handleClick }) => {
   const handleLogout = () => {
     dispatch(startLogout());
   };
+
   return (
     <div className='tasks__aside'>
       <div className='aside__row'>

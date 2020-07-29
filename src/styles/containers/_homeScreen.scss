@@ -1,4 +1,4 @@
-.tasks__header {
+.tasksList__header {
   margin: {
     top: 23px;
     bottom: 12px;
@@ -35,17 +35,5 @@
 }
 
 .tasks__list {
-  @media screen and (min-width: $break-medium) {
-    margin: 20px 0px;
-    div {
-      max-width: 550px;
-    }
-  }
-  @media screen and (min-width: $break-large) {
-    display: block;
-    column-count: 2;
-    div {
-      max-width: 760px;
-    }
-  }
+  margin: 20px 0px;
 }
