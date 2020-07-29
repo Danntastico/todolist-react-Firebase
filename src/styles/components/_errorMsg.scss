@@ -1,0 +1,8 @@
+.error {
+  @extend %box-shadow;
+  background-color: $red-color;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0px;
+}
