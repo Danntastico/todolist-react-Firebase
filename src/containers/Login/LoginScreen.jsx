@@ -6,7 +6,6 @@ import { startLoginEmailPassword } from '../../store/actions/auth';
 export const LoginScreen = () => {
   const { loading } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
-
   const [inputValues, handleInputChange] = useForm({
     email: 'admin@mail.com',
     password: '123456',
@@ -41,7 +40,11 @@ export const LoginScreen = () => {
           value={password}
           onChange={handleInputChange}
         />
-        <button type='submit' className='btn form__btn pointer'>
+        <button
+          type='submit'
+          className='btn form__btn pointer'
+          disabled={loading}
+        >
           Login
         </button>
         <div className='googleLogin pointer' onClick={handleGoogleLogin}>

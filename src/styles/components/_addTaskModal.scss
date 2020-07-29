@@ -1,0 +1,52 @@
+.modal {
+  @extend %box-shadow;
+  background-color: $bg-color;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  padding: 20px;
+  width: 300px;
+  outline: none;
+  @media screen and (min-width: $break-medium) {
+    width: 550px;
+  }
+}
+.modal__title {
+  font-size: 26px;
+  color: $titles-color;
+}
+.addForm__textarea {
+  outline: none;
+  resize: none;
+  width: 90%;
+  height: 180px;
+  margin-bottom: 20px;
+  background: $white-color;
+  border-radius: 3px;
+  border: none;
+  border-bottom: solid 2px $green-color;
+  padding: {
+    left: 10px;
+    top: 10px;
+  }
+}
+
+.addForm__input {
+  width: 220px;
+  background: none;
+  border: none;
+  border-bottom: solid 1px $green-color;
+  @media screen and (min-width: $break-medium) {
+    width: 470px;
+  }
+  padding: 10px 7px;
+  margin-bottom: 20px;
+
+  &::placeholder {
+  }
+}
+
+.modal__btn {
+}

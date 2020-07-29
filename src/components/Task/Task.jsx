@@ -5,7 +5,7 @@ export const Task = () => {
     <div className='taskContainer'>
       <div className='task__header'>
         <p className='taskStatus'>Activa</p>
-        <button className='timeAdd btn pointer'>Agregar tiempo</button>
+        <button className='timeAdd btn'>Agregar tiempo</button>
       </div>
       <div className='userInfo'>
         <img src='assets/profilepic.jpg' alt='' className='userInfo__picture' />

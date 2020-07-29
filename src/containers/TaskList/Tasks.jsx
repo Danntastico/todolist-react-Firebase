@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Task } from '../../components/Task/Task';
 import { FloatingBtn } from '../../components/floatingBtn/FloatingBtn';
 import { AsideNav } from '../../components/asideNavbar/AsideNav';
+import { AddTaskModal } from '../../components/modals/AddTaskModal';
 
 export const Tasks = () => {
   const { todos } = useSelector((state) => state.tasks);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const addTaskModal = () => {
+    setModalIsOpen(true);
+  };
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <>
       <AsideNav />
@@ -31,8 +41,8 @@ export const Tasks = () => {
             </div>
           </>
         )}
-
-        <FloatingBtn />
+        <AddTaskModal modalIsOpen={modalIsOpen} closeModal={handleCloseModal} />
+        <FloatingBtn handleClick={addTaskModal} />
       </div>
     </>
   );
