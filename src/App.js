@@ -1,8 +1,13 @@
 import React from 'react';
-import { Tasks } from './containers/TaskList/Tasks';
-
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import './styles/styles.scss';
+import { AppRouter } from './routes/AppRouter';
 
 export const App = () => {
-  return <Tasks />;
+  return (
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  );
 };
