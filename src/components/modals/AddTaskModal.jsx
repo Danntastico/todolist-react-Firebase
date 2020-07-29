@@ -1,17 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-
+import moment from 'moment';
 import { useForm } from '../../hooks/useForm';
+import { useSelector, useDispatch } from 'react-redux';
+import { setError, removeError } from '../../store/actions/ui';
+import { ErrorMsg } from '../errorMsg/ErrorMsg';
+import { startNewTodo } from '../../store/actions/todos';
 
-export const AddTaskModal = ({ modalIsOpen, closeModal }) => {
-  const [formValues, handleInputChange] = useForm({
+export const AddTaskModal = ({ modalIsOpen, closeModal, currentTime }) => {
+  const { msgError } = useSelector((state) => state.ui);
+  const dispatch = useDispatch();
+  const [formValues, handleInputChange, reset] = useForm({
     taskTitle: '',
     description: '',
-    dueDate: new Date().getDate(),
+    dueDate: currentTime,
     status: 'Activa',
   });
-  const { taskTitle, description, dueDate, status } = formValues;
+  const { taskTitle, description, dueDate } = formValues;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formValidator()) {
+      dispatch(startNewTodo(taskTitle, description, dueDate));
+      closeModal();
+      reset();
+    }
+  };
+  const formValidator = () => {
+    if (taskTitle.trim().length === 0) {
+      dispatch(setError('Agrega un titulo a tu tarea'));
+      return false;
+    } else if (dueDate < currentTime) {
+      dispatch(
+        setError('La fecha de vencimiento no debe ser menor a la fecha actual!')
+      );
+      return false;
+    }
+
+    dispatch(removeError());
+    return true;
+  };
   Modal.setAppElement('#root');
   return (
     <Modal
@@ -22,6 +50,7 @@ export const AddTaskModal = ({ modalIsOpen, closeModal }) => {
       className='modal'
     >
       <h1 className='modal__title'>Add a new Task</h1>
+      {msgError && <ErrorMsg message={msgError} />}
       <form className='addForm'>
         <input
           className='addForm__input'
@@ -38,7 +67,7 @@ export const AddTaskModal = ({ modalIsOpen, closeModal }) => {
           type='text'
           name='description'
           id='description'
-          placeholder='Descripcion de la tarea'
+          placeholder='Descripción de la tarea'
           autoComplete='off'
           value={description}
           onChange={handleInputChange}
@@ -51,29 +80,27 @@ export const AddTaskModal = ({ modalIsOpen, closeModal }) => {
           value={dueDate}
           onChange={handleInputChange}
         />
-        <input
-          className='addForm__input'
-          list='statusList'
-          name='status'
-          id='status'
-          autoComplete='off'
-          value={status}
-          onChange={handleInputChange}
-          disabled={true}
-        />
         <datalist id='statusList'>
           <option value='Activa' />
           <option value='Finalizada' />
         </datalist>
-        <div className='modal__content--btns'>
-          <button type='submit' className='modal__btn submit'>
-            Agregar Tarea
-          </button>
-          <button type='button' className='modal__btn close'>
-            Cancelar
-          </button>
-        </div>
       </form>
+      <div className='modal__content--btns'>
+        <button
+          type='submit'
+          className='modal__btn btn submit'
+          onClick={handleSubmit}
+        >
+          Agregar Tarea
+        </button>
+        <button
+          type='button'
+          className='modal__btn btn close'
+          onClick={closeModal}
+        >
+          Cancelar
+        </button>
+      </div>
     </Modal>
   );
 };

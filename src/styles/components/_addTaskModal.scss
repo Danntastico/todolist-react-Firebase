@@ -17,6 +17,13 @@
   font-size: 26px;
   color: $titles-color;
 }
+
+.addForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .addForm__textarea {
   outline: none;
   resize: none;
@@ -34,7 +41,7 @@
 }
 
 .addForm__input {
-  width: 220px;
+  width: 90%;
   background: none;
   border: none;
   border-bottom: solid 1px $green-color;
@@ -43,10 +50,24 @@
   }
   padding: 10px 7px;
   margin-bottom: 20px;
-
-  &::placeholder {
-  }
+}
+.modal__content--btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal__btn {
+  @extend %box-shadow;
+  margin: 5px;
+  padding: 8px 10px;
+  width: 140px;
+  border-radius: 10px;
 }
 
-.modal__btn {
+.submit {
+  background-color: $green-color;
+}
+
+.close {
+  background-color: $red-color;
 }
