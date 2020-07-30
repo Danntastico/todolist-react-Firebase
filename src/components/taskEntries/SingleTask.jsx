@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { startDeletingTodo, setCurrentTodo } from '../../store/actions/todos';
 import { openCloseModal } from '../../store/actions/ui';
 import { types } from '../../types/types';
-import moment from 'moment';
 import { remainTimeCalculator } from '../../helpers/remainTimeCalculator';
 
 export const SingleTask = ({
