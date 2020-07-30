@@ -6,15 +6,16 @@ import { EditableTextarea } from '../forms/EditableTextarea';
 import { types } from '../../types/types';
 import { openCloseModal } from '../../store/actions/ui';
 import { updateTodo, startUpdatingTodo } from '../../store/actions/todos';
+import { gravatar } from '../../utils/gravatar';
 
 export const TodoDetails = () => {
   const dispatch = useDispatch();
   const { currentTodo } = useSelector((state) => state.tasks);
-  const { name, photoURL } = useSelector((state) => state.auth);
+  const { name, photoURL, email } = useSelector((state) => state.auth);
   const [inputValues, handleInputChange, reset] = useForm(currentTodo);
   const { dueDate, status, description, title, id } = inputValues;
-  const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
-  console.table(inputValues);
+  const imgsrc = photoURL ? photoURL : gravatar(email);
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startDeletingTodo, setCurrentTodo } from '../../store/actions/todos';
 import { openCloseModal } from '../../store/actions/ui';
 import { types } from '../../types/types';
 import { remainTimeCalculator } from '../../helpers/remainTimeCalculator';
+import { gravatar } from '../../utils/gravatar';
 
 export const SingleTask = ({
   description,
@@ -21,7 +22,9 @@ export const SingleTask = ({
   const handleDeleteTask = () => {
     dispatch(startDeletingTodo(id));
   };
-  const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
+  const { email } = useSelector((state) => state.auth);
+
+  const imgsrc = photoURL ? photoURL : gravatar(email);
   const statusLabel = status === 'Activa' ? 'active' : 'finished';
   //const remainTime = remainTimeCalculator(currentTime, dueDate);
   const [remainTime, setRemainTime] = useState(
