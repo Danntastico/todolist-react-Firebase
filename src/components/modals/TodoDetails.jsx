@@ -5,7 +5,7 @@ import { EditableInput } from '../forms/EditableInput';
 import { EditableTextarea } from '../forms/EditableTextarea';
 import { types } from '../../types/types';
 import { openCloseModal } from '../../store/actions/ui';
-import { updateTodo, startUpdatingTodo } from '../../store/actions/todos';
+import { startUpdatingTodo } from '../../store/actions/todos';
 import { gravatar } from '../../utils/gravatar';
 
 export const TodoDetails = () => {

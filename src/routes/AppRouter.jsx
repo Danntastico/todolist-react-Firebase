@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { firebase } from '../firebase/firebase-config';
-import {
-  login,
-  startRegisterWithEmailPasswordName,
-} from '../store/actions/auth';
+import { login } from '../store/actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { AuthRouter } from './AuthRouter';
 import { startLoadingTodos } from '../store/actions/todos';
 import { DashboardRoutes } from './DashBoardRoutes';
 import { LoadingView } from '../components/loadingView/LoadingView';
-import { setCurrentTime } from '../store/actions/ui';
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
