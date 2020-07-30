@@ -38,7 +38,6 @@ export const todosReducer = (state = initialState, action) => {
           i.id === action.payload.id
             ? {
                 ...i,
-                d: 'donde putas tienes el resto',
                 status: action.payload.status,
               }
             : i
@@ -66,6 +65,21 @@ export const todosReducer = (state = initialState, action) => {
           (item) => item.status === 'Finalizada'
         ).length,
         totalTodos: state.todos.length,
+      };
+    case types.todosUpdated:
+      return {
+        ...state,
+        todos: state.todos.map((item) =>
+          item.id === action.payload.id
+            ? {
+                ...item,
+                status: action.payload.status,
+                description: action.payload.description,
+                title: action.payload.title,
+                dueDate: action.payload.dueDate,
+              }
+            : item
+        ),
       };
     default:
       return state;

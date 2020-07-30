@@ -10,7 +10,7 @@ export const startNewTodo = (title, description, dueDate) => {
     const newTodo = {
       title,
       description,
-      status: 'activa',
+      status: 'Activa',
       dueDate,
     };
     const docRef = await db.collection(`${uid}/tasks/todos`).add(newTodo);
@@ -64,6 +64,50 @@ export const startGettingSingleTodo = (id) => {
     dispatch(getSingleTodo(todo));
   };
 };
+
+export const startUpdatingTodo = (
+  id,
+  title,
+  description,
+  status,
+  dueDate,
+  currentTodo
+) => {
+  return async (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    console.log(title);
+    const newTodo = {
+      title,
+      description,
+      status,
+      dueDate,
+    };
+    await db
+      .doc(`${uid}/tasks/todos/${id}`)
+      .update({ ...currentTodo, newTodo });
+    dispatch(updateTodo(id, title, description, status, dueDate));
+    Swal.fire({
+      position: 'bottom-end',
+      width: '300px',
+      icon: 'success',
+      title: 'Tarea Actualizada',
+      showConfirmButton: false,
+      timer: 2500,
+    });
+  };
+};
+
+export const updateTodo = (id, title, description, status, dueDate) => ({
+  type: types.todosUpdated,
+  payload: {
+    id,
+    title,
+    description,
+    status,
+    dueDate,
+    setCurrentTodo,
+  },
+});
 
 export const updateTodoStatus = (id, status) => ({
   type: types.todosSetStatus,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { startDeletingTodo, setCurrentTodo } from '../../store/actions/todos';
 import { openCloseModal } from '../../store/actions/ui';
@@ -22,8 +22,14 @@ export const SingleTask = ({
     dispatch(startDeletingTodo(id));
   };
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
-  const statusLabel = status === 'activa' ? 'active' : 'finished';
-  const remainTime = remainTimeCalculator(currentTime, dueDate);
+  const statusLabel = status === 'Activa' ? 'active' : 'finished';
+  //const remainTime = remainTimeCalculator(currentTime, dueDate);
+  const [remainTime, setRemainTime] = useState(
+    remainTimeCalculator(currentTime, dueDate)
+  );
+  useEffect(() => {
+    setRemainTime(remainTimeCalculator(currentTime, dueDate));
+  }, [description, dueDate, status, title, author, currentTime]);
   const handleClick = () => {
     dispatch(setCurrentTodo(id));
     dispatch(openCloseModal(types.detailsModalIsOpen, true));
@@ -33,7 +39,7 @@ export const SingleTask = ({
     <div className='taskContainer'>
       <div className='task__header'>
         <p className={`taskStatus ${statusLabel}`}>{status}</p>
-        {status === 'activa' && (
+        {status === 'Activa' && (
           <button
             className='timeAdd btn'
             onClick={() => handleChangeStatus(id, 'Finalizada')}
@@ -45,7 +51,7 @@ export const SingleTask = ({
       <div className='userInfo'>
         <img src={imgsrc} alt='' className='userInfo__picture' />
         <p className='userInfo__name'>{author}</p>
-        {status === 'activa' && (
+        {status === 'Activa' && (
           <div className='userInfo__timeLeft'>
             <i className='far fa-clock'></i>
             <p>

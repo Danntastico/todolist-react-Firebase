@@ -5,21 +5,30 @@ import { EditableInput } from '../forms/EditableInput';
 import { EditableTextarea } from '../forms/EditableTextarea';
 import { types } from '../../types/types';
 import { openCloseModal } from '../../store/actions/ui';
+import { updateTodo, startUpdatingTodo } from '../../store/actions/todos';
 
 export const TodoDetails = () => {
   const dispatch = useDispatch();
   const { currentTodo } = useSelector((state) => state.tasks);
   const { name, photoURL } = useSelector((state) => state.auth);
-  const [inputValues, handleInputChange] = useForm(currentTodo);
-  const { dueDate, status, description, title } = inputValues;
+  const [inputValues, handleInputChange, reset] = useForm(currentTodo);
+  const { dueDate, status, description, title, id } = inputValues;
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
   console.table(inputValues);
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+  const handleUpdateTodo = () => {
+    dispatch(
+      startUpdatingTodo(id, title, description, status, dueDate, currentTodo)
+    );
+    handleCloseClick();
+    reset();
+  };
 
   const handleCloseClick = () => {
     dispatch(openCloseModal(types.detailsModalIsOpen, false));
+    reset();
   };
   return (
     <>
@@ -82,7 +91,7 @@ export const TodoDetails = () => {
         </div>
         <div className='detail__footer'>
           <button
-            onClick={handleCloseClick}
+            onClick={handleUpdateTodo}
             className='detail__submitBtn pointer'
           >
             Submit

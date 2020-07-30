@@ -12,7 +12,8 @@ export const EditableInput = ({
 }) => {
   const [disabled, setDisabled] = useState(true);
 
-  const handleEnableEdit = () => {
+  const handleEnableEdit = (e) => {
+    e.preventDefault();
     setDisabled(!disabled);
   };
   const disabledStyles = disabled ? '-disabled' : '';
