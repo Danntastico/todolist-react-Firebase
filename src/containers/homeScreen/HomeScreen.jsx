@@ -40,6 +40,7 @@ export const HomeScreen = () => {
       );
     }, 60000);
   };
+  const dispatch = useDispatch();
 
   useEffect(() => {
     thick();
@@ -47,7 +48,6 @@ export const HomeScreen = () => {
       clearInterval(thick);
     };
   }, [currentTime]);
-  const dispatch = useDispatch();
   useEffect(() => {
     if (!todos) {
       setLoading(true);

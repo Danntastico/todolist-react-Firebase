@@ -2,7 +2,6 @@ import React from 'react';
 import { IntlProvider, FormattedDate } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../store/actions/auth';
-import { openModal } from '../../store/actions/ui';
 import { DescriptionStatus } from '../taskEntries/DescriptionStatus';
 import { gravatar } from '../../utils/gravatar';
 
