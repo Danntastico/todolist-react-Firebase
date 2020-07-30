@@ -1,0 +1,23 @@
+//Base & settings
+@import './base/settings';
+@import './base/base';
+
+//components
+@import './components/singleTask';
+@import './components/floatingBtn';
+@import './components/asideNav';
+@import './components/addTodoModal';
+@import './components/errorMsg';
+@import './components/tasklistHeader';
+@import './components/loadingView';
+@import './components/modalContainer';
+@import './components/todoDetails';
+@import './components/editableInput';
+@import './components/editableTextarea';
+@import './components/descriptionStatus';
+@import './components/emptyList';
+
+//containers
+@import './containers/homeScreen';
+@import './containers/loginScreen';
+@import './containers/registerScreen';

@@ -1,0 +1,17 @@
+.floatingBtn {
+  @extend %box-shadow;
+  position: fixed;
+  bottom: 24px;
+  right: 26px;
+  background-color: $btn-color;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  i {
+    font-size: 30px;
+    color: $bg-color;
+  }
+  @media screen and (min-width: $break-medium) {
+    display: none;
+  }
+}

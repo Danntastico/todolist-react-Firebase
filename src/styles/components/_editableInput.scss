@@ -1,0 +1,79 @@
+.editable--main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editable {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 3;
+}
+
+.editable__label-disabled {
+  font-weight: 700;
+  transition: 0.4s;
+  font-size: 20px;
+  color: $titles-color;
+  @media screen and(min-width: $break-medium) {
+  }
+}
+.editable__label {
+  transition: 0.4s;
+  font-size: 2.5vw;
+  color: $text-color;
+  @media screen and(min-width: $break-medium) {
+    font-size: 26px;
+  }
+}
+
+.editInpt__input-disabled {
+  transition: 0.4s;
+  width: 100%;
+  background: none;
+  border-style: none;
+  font-weight: 100;
+  color: $text-color;
+  font-size: 17px;
+  @media screen and (min-width: $break-medium) {
+    font-size: 20px;
+  }
+}
+.editInpt__input {
+  transition: 0.4s;
+  border-style: none;
+  border-bottom: solid 1px $green-color;
+  font-weight: 100;
+  font-size: 20px;
+  color: $titles-color;
+  padding: 5px 10px;
+  @media screen and (min-width: $break-medium) {
+    font-size: 30px;
+  }
+}
+
+%editable-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: 0.4s;
+  i {
+    margin: 0;
+    padding: 0;
+  }
+  @media screen and (min-width: $break-small) {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.editableBtn-disabled {
+  @extend %editable-btn;
+}
+
+.editableBtn {
+  @extend %editable-btn;
+  @extend %box-shadow;
+  transition: 0.4s;
+  background-color: $green-color;
+}

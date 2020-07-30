@@ -1,0 +1,92 @@
+%detail-btn {
+  border-style: none;
+  color: $white-color;
+  font-size: 30px;
+  width: 50%;
+  padding: 10px 0px;
+  transition: 0.2s;
+  &:hover {
+    transition: 0.1s;
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.detail {
+  @extend %box-shadow;
+  position: relative;
+  background-color: $white-color;
+  margin: auto;
+  padding: 0;
+  width: 100%;
+}
+
+.detail__header {
+  background-color: $btn-color;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  @media screen and (min-width: $break-medium) {
+    min-height: 110px;
+    padding: 10px 50px;
+  }
+}
+
+.headerTitle {
+  p {
+    font-weight: 700;
+    font-size: 5vw;
+    color: $white-color;
+    @media screen and (min-width: $break-medium) {
+      font-size: 25px;
+    }
+  }
+}
+.headerImg {
+  @extend %coverimg;
+  @extend %box-shadow;
+
+  width: 40px;
+  height: 40px;
+}
+.headerProfileName {
+  color: $white-color;
+  font-size: 3vw;
+  font-weight: 200;
+  @media screen and (min-width: $break-medium) {
+    font-size: 25px;
+  }
+}
+
+.headerAuthor {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  @media screen and (min-width: $break-medium) {
+    align-items: flex-end;
+    flex-direction: column;
+  }
+}
+.detail__closeBtn {
+  @extend %detail-btn;
+  background-color: $red-color;
+}
+.detail__submitBtn {
+  @extend %detail-btn;
+  background-color: $green-color;
+}
+.detail__body {
+  padding: 30px 10px;
+  align-items: center;
+  @media screen and (min-width: $break-medium) {
+    padding: 30px 50px;
+  }
+}
+
+.detail__footer {
+  display: flex;
+  width: 100%;
+}

@@ -1,0 +1,13 @@
+.loadingView {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $green-color;
+  h1 {
+    font-size: 1.5em;
+    color: $white-color;
+  }
+}
