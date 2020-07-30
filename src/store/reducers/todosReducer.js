@@ -6,16 +6,10 @@ import { types } from '../../types/types';
  */
 const initialState = {
   todos: [],
-  currentTodo: {
-    description: '',
-    dueDate: '',
-    status: '',
-    title: '',
-    id: '',
-  },
+  currentTodo: null,
 };
 
-export const taskReducer = (state = initialState, action) => {
+export const todosReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.todosLoad:
       return {
@@ -48,12 +42,18 @@ export const taskReducer = (state = initialState, action) => {
         ),
       };
     }
-    case types.todosGetSingle: {
+    case types.todosGetSingle:
       return {
         ...state,
         currentTodo: action.payload,
       };
-    }
+    case types.todosSetCurrent:
+      return {
+        ...state,
+        currentTodo: state.todos.filter(
+          (item) => item.id === action.payload
+        )[0],
+      };
     default:
       return state;
   }

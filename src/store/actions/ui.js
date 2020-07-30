@@ -16,11 +16,10 @@ export const finishLoading = () => ({
   type: types.uiFinishLoading,
 });
 
-export const openModal = () => ({
-  type: types.uiOpenModal,
-  payload: true,
-});
-export const closeModal = () => ({
-  type: types.uiCloseModal,
-  payload: false,
+export const openCloseModal = (targetModal, isOpen) => ({
+  type: types.uiOpenCloseModal,
+  payload: {
+    target: targetModal,
+    isOpen: isOpen,
+  },
 });

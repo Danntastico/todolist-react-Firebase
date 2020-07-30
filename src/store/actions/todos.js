@@ -86,6 +86,11 @@ export const getSingleTodo = (todo) => ({
   payload: todo,
 });
 
+export const setCurrentTodo = (id) => ({
+  type: types.todosSetCurrent,
+  payload: id,
+});
+
 export const deleteTodo = (id) => ({
   type: types.todosDelete,
   payload: id,

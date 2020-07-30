@@ -3,7 +3,8 @@ import { types } from '../../types/types';
 const initialState = {
   loading: false,
   msgError: null,
-  modalIsOpen: false,
+  detailsModalIsOpen: false,
+  addTodoModalIsOpen: false,
 };
 
 export const uiReducer = (state = initialState, action) => {
@@ -28,15 +29,10 @@ export const uiReducer = (state = initialState, action) => {
         ...state,
         loading: false,
       };
-    case types.uiOpenModal:
+    case types.uiOpenCloseModal:
       return {
         ...state,
-        modalIsOpen: action.payload,
-      };
-    case types.uiCloseModal:
-      return {
-        ...state,
-        modalIsOpen: action.payload,
+        [action.payload.target]: action.payload.isOpen,
       };
     default:
       return state;
