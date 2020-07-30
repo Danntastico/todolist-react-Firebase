@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { firebase } from '../firebase/firebase-config';
-import { login } from '../store/actions/auth';
+import {
+  login,
+  startRegisterWithEmailPasswordName,
+} from '../store/actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { AuthRouter } from './AuthRouter';

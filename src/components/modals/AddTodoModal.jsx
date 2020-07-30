@@ -69,6 +69,7 @@ export const AddTodoModal = ({ currentTime }) => {
           value={description}
           onChange={handleInputChange}
         />
+        <label htmlFor='dueDate'>Fecha de vencimiento</label>
         <input
           className='addForm__input'
           type='datetime-local'

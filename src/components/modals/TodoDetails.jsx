@@ -65,6 +65,7 @@ export const TodoDetails = () => {
             list='statusList'
             name='status'
             label='Estado de la tarea'
+            value={status}
             onChange={handleInputChange}
           >
             <datalist id='statusList'>
@@ -72,6 +73,16 @@ export const TodoDetails = () => {
               <option value='Finalizada' />
             </datalist>
           </EditableInput>
+          <hr />
+          <input
+            disabled={true}
+            className='addForm__input'
+            type='datetime-local'
+            id='dueDate'
+            name='dueDate'
+            value={dueDate}
+            onChange={handleInputChange}
+          />
           <hr />
         </div>
         <div className='detail__footer'>

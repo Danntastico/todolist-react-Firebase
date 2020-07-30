@@ -32,9 +32,9 @@
   width: 100%;
   background: none;
   border-style: none;
-  font-weight: 200;
+  font-weight: 100;
   color: $text-color;
-  font-size: 2.5vw;
+  font-size: 17px;
   @media screen and (min-width: $break-medium) {
     font-size: 20px;
   }
@@ -44,7 +44,7 @@
   border-style: none;
   border-bottom: solid 1px $green-color;
   font-weight: 100;
-  font-size: 3vw;
+  font-size: 20px;
   color: $titles-color;
   padding: 5px 10px;
   @media screen and (min-width: $break-medium) {
