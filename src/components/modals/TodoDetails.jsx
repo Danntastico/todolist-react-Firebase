@@ -5,9 +5,9 @@ import { EditableInput } from '../forms/EditableInput';
 
 export const TodoDetails = () => {
   const { currentTodo } = useSelector((state) => state.tasks);
+  const { name, photoURL } = useSelector((state) => state.auth);
   const [inputValues, handleInputChange] = useForm(currentTodo);
-
-  const photoURL = '';
+  const { id, dueDate, status, description, title } = inputValues;
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
 
   const handleSubmit = (e) => {
@@ -17,26 +17,27 @@ export const TodoDetails = () => {
   const handleCloseClick = () => {};
   return (
     <>
-      <form className={`detail__content`} onSubmit={handleSubmit}>
-        <button onClick={handleCloseClick}>close</button>
-        <div className='detail__info'>
+      <form className={`detail`} onSubmit={handleSubmit}>
+        <div className='detail__header'>
+          <div className='headerTitle'>
+            <p>{title}</p>
+          </div>
+          <div className='headerAuthor'>
+            <img src={imgsrc} alt='profile' className='headerImg' />
+            <p className='headerProfileName'>{name}</p>
+          </div>
+          <button onClick={handleCloseClick} className='detail__closeBtn'>
+            &times;
+          </button>
+        </div>
+        <div className='detail__body'>
           <EditableInput
             type='text'
-            name='inputTitle'
-            id='inputTitle'
-            value=''
+            name='title'
+            id='title'
+            value={title}
+            label='Titulo'
             onChange={handleInputChange}
-          />
-          <input
-            className='detail__title'
-            type='text'
-            name='inputTitle'
-            id='inputTitle'
-            autoComplete='off'
-            /* value={title} */
-            value=''
-            onChange={handleInputChange}
-            disabled={false}
           />
           <textarea
             className='addForm__textarea'
@@ -44,17 +45,12 @@ export const TodoDetails = () => {
             name='description'
             id='description'
             autoComplete='off'
-            /* value={description} */
-            value=''
+            value={description}
             onChange={handleInputChange}
           />
         </div>
         <div className='detail__dueDate'>
           <i className='fas fa-calendar-alt'></i>
-        </div>
-        <div className='detail__author'>
-          <img src={imgsrc} alt='profile' className='detail__img' />
-          <p className='detail__author'>{/* author */}</p>
         </div>
       </form>
     </>

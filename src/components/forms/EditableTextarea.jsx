@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 
-export const EditableInput = ({ name, label, inputType, value, onChange }) => {
+export const EditableTextarea = ({
+  name,
+  label,
+  inputType,
+  value,
+  onChange,
+}) => {
   const [disabled, setDisabled] = useState(true);
 
   const handleEnableEdit = () => {
@@ -14,7 +20,7 @@ export const EditableInput = ({ name, label, inputType, value, onChange }) => {
         <label htmlFor={name} className={`editInpt__label${disabledStyles}`}>
           {label}
         </label>
-        <input
+        <textarea
           className={`editInpt__input${disabledStyles}`}
           type={inputType}
           name={name}

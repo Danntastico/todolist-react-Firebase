@@ -1,0 +1,55 @@
+.editInpt--main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editInp {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 3;
+}
+
+.editInpt__label-disabled {
+  font-size: 3.5vw;
+  font-weight: 700;
+  color: $titles-color;
+  transition: 0.4s;
+}
+.editInpt__label {
+  transition: 0.4s;
+  font-size: 1.5vw;
+  @media screen and(min-width: $break-medium) {
+    font-size: 1.5vw;
+  }
+}
+
+.editInpt__input-disabled {
+  transition: 0.4s;
+  width: 100%;
+  background: none;
+  border-style: none;
+  font-weight: 700;
+  color: $text-color;
+  font-size: 2vw;
+  @media screen and (min-width: $break-medium) {
+    font-size: 1vw;
+  }
+}
+.editInpt__input {
+  transition: 0.4s;
+  border-style: none;
+  border-bottom: solid 1px $green-color;
+  font-weight: 100;
+  font-size: 3vw;
+  padding: 5px 10px;
+}
+
+.editInpt__btn {
+  width: 50px;
+  height: 50px;
+  i {
+    margin: 0;
+    padding: 0;
+  }
+}

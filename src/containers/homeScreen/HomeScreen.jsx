@@ -65,9 +65,11 @@ export const HomeScreen = () => {
               </TaskEntries>
             </div>
           )}
-          <ModalContainer modalIsOpen={detailsModalIsOpen}>
-            <TodoDetails />
-          </ModalContainer>
+          {detailsModalIsOpen && (
+            <ModalContainer modalIsOpen={detailsModalIsOpen}>
+              <TodoDetails />
+            </ModalContainer>
+          )}
           <ModalContainer modalIsOpen={addTodoModalIsOpen}>
             <AddTodoModal currentTime={currentTime} />
           </ModalContainer>
