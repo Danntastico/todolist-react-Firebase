@@ -59,7 +59,7 @@ export const todosReducer = (state = initialState, action) => {
     case types.todosCounter:
       return {
         ...state,
-        activeTodos: state.todos.filter((item) => item.status === 'activa')
+        activeTodos: state.todos.filter((item) => item.status === 'Activa')
           .length,
         finishedTodos: state.todos.filter(
           (item) => item.status === 'Finalizada'
