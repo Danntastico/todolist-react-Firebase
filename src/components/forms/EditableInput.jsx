@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 
-export const EditableInput = ({ name, label, inputType, value, onChange }) => {
+export const EditableInput = ({
+  name,
+  label,
+  inputType,
+  value,
+  onChange,
+  list,
+  children,
+}) => {
   const [disabled, setDisabled] = useState(true);
 
   const handleEnableEdit = () => {
@@ -9,9 +17,9 @@ export const EditableInput = ({ name, label, inputType, value, onChange }) => {
   const disabledStyles = disabled ? '-disabled' : '';
 
   return (
-    <div className={`editInpt--main`}>
-      <div className='editInp'>
-        <label htmlFor={name} className={`editInpt__label${disabledStyles}`}>
+    <div className={`editable--main`}>
+      <div className='editable'>
+        <label htmlFor={name} className={`editable__label${disabledStyles}`}>
           {label}
         </label>
         <input
@@ -23,9 +31,11 @@ export const EditableInput = ({ name, label, inputType, value, onChange }) => {
           value={value}
           onChange={onChange}
           disabled={disabled}
+          list={list}
         />
+        {children}
       </div>
-      <button onClick={handleEnableEdit} className='editInpt__btn btn pointer'>
+      <button onClick={handleEnableEdit} className='editableBtn btn pointer'>
         <i className='fas fa-edit'></i>
       </button>
     </div>

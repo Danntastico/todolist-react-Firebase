@@ -15,13 +15,13 @@ export const EditableTextarea = ({
   const disabledStyles = disabled ? '-disabled' : '';
 
   return (
-    <div className={`editInpt--main`}>
-      <div className='editInp'>
-        <label htmlFor={name} className={`editInpt__label${disabledStyles}`}>
+    <div className={`editable--main`}>
+      <div className='editable'>
+        <label htmlFor={name} className={`editable__label${disabledStyles}`}>
           {label}
         </label>
         <textarea
-          className={`editInpt__input${disabledStyles}`}
+          className={`editTxt__textarea${disabledStyles}`}
           type={inputType}
           name={name}
           id={name}
@@ -31,7 +31,7 @@ export const EditableTextarea = ({
           disabled={disabled}
         />
       </div>
-      <button onClick={handleEnableEdit} className='editInpt__btn btn pointer'>
+      <button onClick={handleEnableEdit} className='editableBtn btn pointer'>
         <i className='fas fa-edit'></i>
       </button>
     </div>

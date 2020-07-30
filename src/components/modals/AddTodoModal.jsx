@@ -77,10 +77,6 @@ export const AddTodoModal = ({ currentTime }) => {
           value={dueDate}
           onChange={handleInputChange}
         />
-        <datalist id='statusList'>
-          <option value='Activa' />
-          <option value='Finalizada' />
-        </datalist>
       </form>
       <div className='addtodo__content--btns'>
         <button

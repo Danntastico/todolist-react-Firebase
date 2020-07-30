@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 import { EditableInput } from '../forms/EditableInput';
+import { EditableTextarea } from '../forms/EditableTextarea';
 
 export const TodoDetails = () => {
   const { currentTodo } = useSelector((state) => state.tasks);
@@ -20,15 +21,12 @@ export const TodoDetails = () => {
       <form className={`detail`} onSubmit={handleSubmit}>
         <div className='detail__header'>
           <div className='headerTitle'>
-            <p>{title}</p>
+            <p>Detalles de la tarea</p>
           </div>
           <div className='headerAuthor'>
             <img src={imgsrc} alt='profile' className='headerImg' />
             <p className='headerProfileName'>{name}</p>
           </div>
-          <button onClick={handleCloseClick} className='detail__closeBtn'>
-            &times;
-          </button>
         </div>
         <div className='detail__body'>
           <EditableInput
@@ -39,18 +37,51 @@ export const TodoDetails = () => {
             label='Titulo'
             onChange={handleInputChange}
           />
-          <textarea
-            className='addForm__textarea'
+          <hr />
+          <EditableTextarea
             type='text'
             name='description'
             id='description'
-            autoComplete='off'
             value={description}
+            label='Descripción'
             onChange={handleInputChange}
           />
+          <hr />
+          <EditableInput
+            type='datetime-local'
+            name='dueDate'
+            id='dueDate'
+            value={dueDate}
+            label='Fecha de vencimiento'
+            onChange={handleInputChange}
+          />
+          <hr />
+          <EditableInput
+            list='statusList'
+            name='status'
+            label='Estado de la tarea'
+            onChange={handleInputChange}
+          >
+            <datalist id='statusList'>
+              <option value='Activa' />
+              <option value='Finalizada' />
+            </datalist>
+          </EditableInput>
+          <hr />
         </div>
-        <div className='detail__dueDate'>
-          <i className='fas fa-calendar-alt'></i>
+        <div className='detail__footer'>
+          <button
+            onClick={handleCloseClick}
+            className='detail__submitBtn pointer'
+          >
+            Submit
+          </button>
+          <button
+            onClick={handleCloseClick}
+            className='detail__closeBtn pointer'
+          >
+            Close
+          </button>
         </div>
       </form>
     </>

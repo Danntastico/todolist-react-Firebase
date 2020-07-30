@@ -1,3 +1,17 @@
+%detail-btn {
+  border-style: none;
+  color: $white-color;
+  font-size: 30px;
+  width: 50%;
+  padding: 10px 0px;
+  transition: 0.2s;
+  &:hover {
+    transition: 0.1s;
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
 .detail {
   @extend %box-shadow;
   position: relative;
@@ -5,6 +19,12 @@
   margin: auto;
   padding: 0;
   width: 80%;
+  @media screen and (min-width: $break-medium) {
+    width: 100%;
+  }
+  @media screen and (min-width: $break-large) {
+    width: 80%;
+  }
 }
 
 .detail__header {
@@ -44,13 +64,22 @@
   justify-content: center;
 }
 .detail__closeBtn {
+  @extend %detail-btn;
   background-color: $red-color;
-  border-style: none;
-  color: $white-color;
-  font-size: 30px;
+}
+.detail__submitBtn {
+  @extend %detail-btn;
+  background-color: $green-color;
 }
 .detail__body {
   padding: 30px 10px;
-  position: relative;
   align-items: center;
+  @media screen and (min-width: $break-medium) {
+    padding: 30px 50px;
+  }
+}
+
+.detail__footer {
+  display: flex;
+  width: 100%;
 }
