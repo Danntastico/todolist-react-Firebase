@@ -13,6 +13,7 @@ export const EditableTextarea = ({
     setDisabled(!disabled);
   };
   const disabledStyles = disabled ? '-disabled' : '';
+  const iconBtn = disabled ? 'fas fa-edit' : 'fas fa-check';
 
   return (
     <div className={`editable--main`}>
@@ -31,8 +32,11 @@ export const EditableTextarea = ({
           disabled={disabled}
         />
       </div>
-      <button onClick={handleEnableEdit} className='editableBtn btn pointer'>
-        <i className='fas fa-edit'></i>
+      <button
+        onClick={handleEnableEdit}
+        className={`editableBtn${disabledStyles} btn pointer`}
+      >
+        <i className={iconBtn}></i>
       </button>
     </div>
   );

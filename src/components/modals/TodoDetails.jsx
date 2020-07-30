@@ -53,20 +53,12 @@ export const TodoDetails = () => {
           />
           <hr />
           <EditableInput
-            type='datetime-local'
-            name='dueDate'
-            id='dueDate'
-            value={dueDate}
-            label='Fecha de vencimiento'
-            onChange={handleInputChange}
-          />
-          <hr />
-          <EditableInput
             list='statusList'
             name='status'
-            label='Estado de la tarea'
+            label='Estado de la tarea (Activa o Finalizada)'
             value={status}
             onChange={handleInputChange}
+            pattern='[Aa]ctiva|[Ff]inalizada'
           >
             <datalist id='statusList'>
               <option value='Activa' />
@@ -74,16 +66,19 @@ export const TodoDetails = () => {
             </datalist>
           </EditableInput>
           <hr />
-          <input
-            disabled={true}
-            className='addForm__input'
-            type='datetime-local'
-            id='dueDate'
-            name='dueDate'
-            value={dueDate}
-            onChange={handleInputChange}
-          />
-          <hr />
+          <div className='detail___row'>
+            <label htmlFor='dueDate' className='editable__label-disabled'>
+              Vencimiento
+            </label>
+            <input
+              className='addForm__input'
+              type='datetime-local'
+              id='dueDate'
+              name='dueDate'
+              value={dueDate}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
         <div className='detail__footer'>
           <button

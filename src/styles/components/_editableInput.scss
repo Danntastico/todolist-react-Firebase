@@ -52,10 +52,11 @@
   }
 }
 
-.editableBtn {
+%editable-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  transition: 0.4s;
   i {
     margin: 0;
     padding: 0;
@@ -64,4 +65,15 @@
     width: 50px;
     height: 50px;
   }
+}
+
+.editableBtn-disabled {
+  @extend %editable-btn;
+}
+
+.editableBtn {
+  @extend %editable-btn;
+  @extend %box-shadow;
+  transition: 0.4s;
+  background-color: $green-color;
 }

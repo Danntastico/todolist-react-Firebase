@@ -8,6 +8,7 @@ export const EditableInput = ({
   onChange,
   list,
   children,
+  pattern,
 }) => {
   const [disabled, setDisabled] = useState(true);
 
@@ -15,6 +16,7 @@ export const EditableInput = ({
     setDisabled(!disabled);
   };
   const disabledStyles = disabled ? '-disabled' : '';
+  const iconBtn = disabled ? 'fas fa-edit' : 'fas fa-check';
 
   return (
     <div className={`editable--main`}>
@@ -32,11 +34,15 @@ export const EditableInput = ({
           onChange={onChange}
           disabled={disabled}
           list={list}
+          pattern={pattern}
         />
         {children}
       </div>
-      <button onClick={handleEnableEdit} className='editableBtn btn pointer'>
-        <i className='fas fa-edit'></i>
+      <button
+        onClick={handleEnableEdit}
+        className={`editableBtn${disabledStyles} btn pointer`}
+      >
+        <i className={iconBtn}></i>
       </button>
     </div>
   );

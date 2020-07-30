@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { firebase } from '../firebase/firebase-config';
 import {
@@ -13,10 +13,10 @@ import { AuthRouter } from './AuthRouter';
 import { startLoadingTodos } from '../store/actions/todos';
 import { DashboardRoutes } from './DashBoardRoutes';
 import { LoadingView } from '../components/loadingView/LoadingView';
+import { setCurrentTime } from '../store/actions/ui';
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
-
   const [checking, setChecking] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 

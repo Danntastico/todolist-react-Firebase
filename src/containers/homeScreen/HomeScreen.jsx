@@ -25,13 +25,30 @@ export const HomeScreen = () => {
 
   const sortedTodos = todos.sort((i) => i.status);
   const [loading, setLoading] = useState(true);
+
   const [currentTime, setCurrentTime] = useState(
-    moment(),
-    'YYYY-MM-DD hh:mm:ss'
+    new Date(new Date().toString().split('GMT')[0] + ' UTC')
+      .toISOString()
+      .split('.')[0]
   );
 
-  const dispatch = useDispatch();
+  const thick = () => {
+    setInterval(() => {
+      setCurrentTime(
+        new Date(new Date().toString().split('GMT')[0] + ' UTC')
+          .toISOString()
+          .split('.')[0]
+      );
+    }, 60000);
+  };
 
+  useEffect(() => {
+    thick();
+    return () => {
+      clearInterval(thick);
+    };
+  }, [currentTime]);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (!todos) {
       setLoading(true);
@@ -68,6 +85,7 @@ export const HomeScreen = () => {
                     author={name}
                     photoURL={photoURL}
                     handleChangeStatus={handleChangeStatus}
+                    currentTime={currentTime}
                     {...todo}
                   />
                 ))}
@@ -79,9 +97,14 @@ export const HomeScreen = () => {
               <TodoDetails />
             </ModalContainer>
           )}
-          <ModalContainer modalIsOpen={addTodoModalIsOpen}>
-            <AddTodoModal currentTime={currentTime} />
-          </ModalContainer>
+          {addTodoModalIsOpen && (
+            <ModalContainer modalIsOpen={addTodoModalIsOpen}>
+              <AddTodoModal
+                currentTime={currentTime}
+                setCurrentTime={setCurrentTime}
+              />
+            </ModalContainer>
+          )}
         </>
       )}
     </>

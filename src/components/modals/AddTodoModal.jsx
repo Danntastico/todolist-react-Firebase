@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from '../../hooks/useForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { setError, removeError, openCloseModal } from '../../store/actions/ui';
@@ -6,15 +6,23 @@ import { ErrorMsg } from '../errorMsg/ErrorMsg';
 import { startNewTodo } from '../../store/actions/todos';
 import { types } from '../../types/types';
 
-export const AddTodoModal = ({ currentTime }) => {
+export const AddTodoModal = ({ currentTime, setCurrentTime }) => {
   const { msgError } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
+  useEffect(() => {
+    setCurrentTime(
+      new Date(new Date().toString().split('GMT')[0] + ' UTC')
+        .toISOString()
+        .split('.')[0]
+    );
+  }, []);
   const [formValues, handleInputChange, reset] = useForm({
     taskTitle: '',
     description: '',
     dueDate: currentTime,
     status: 'Activa',
   });
+
   const { taskTitle, description, dueDate } = formValues;
 
   const handleSubmit = (e) => {

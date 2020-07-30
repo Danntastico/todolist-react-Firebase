@@ -10,7 +10,6 @@ export const types = {
 
   uiCloseModal: '[UI] Close Modal',
   uiOpenModal: '[UI] Open Modal',
-
   uiOpenCloseModal: '[UI] OpenClose modal',
 
   addTodoModalIsOpen: 'addTodoModalIsOpen',
@@ -24,6 +23,5 @@ export const types = {
   todosGetSingle: '[todos] Get Single todo',
   todosSetCurrent: '[todos] Set current todo',
   todosLogoutCleaner: '[todos] Logout Cleaner',
-
   todosCounter: '[todos] count total',
 };
