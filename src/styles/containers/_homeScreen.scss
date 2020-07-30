@@ -11,27 +11,11 @@
   }
 }
 
-.description {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  h1 {
-    font-size: 19px;
-    font-weight: 700;
-    color: $titles-color;
-    margin-right: 8px;
-  }
-  p {
-    font-weight: 700;
-    color: $btn-color;
-    font-size: 13px;
-  }
-}
 .addTask {
   @extend %box-shadow;
   padding: 10px;
   border-radius: 10px;
-  background-color: $green-color;
+  background-color: $btn-color;
 }
 
 .tasks__list {

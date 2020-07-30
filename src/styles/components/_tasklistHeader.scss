@@ -1,4 +1,6 @@
 .tasksList__header {
+  display: flex;
+  align-items: center;
   margin: {
     top: 23px;
     bottom: 12px;
@@ -9,4 +11,9 @@
   @media screen and (min-width: $break-medium) {
     display: none;
   }
+}
+.header__content {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
 }

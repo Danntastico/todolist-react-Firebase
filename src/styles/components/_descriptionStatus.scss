@@ -1,0 +1,21 @@
+.status__item {
+  font-size: 5vw;
+  .item__label {
+    display: none;
+    padding: 0px 5px;
+  }
+  @media screen and (min-width: $break-small) {
+    font-size: 2vw;
+    .item__label {
+      display: block;
+    }
+  }
+  @media screen and (min-width: $break-medium) {
+    display: flex;
+  }
+}
+.item__counter {
+  i {
+    padding-right: 5px;
+  }
+}

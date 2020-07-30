@@ -3,10 +3,13 @@ import { IntlProvider, FormattedDate } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../store/actions/auth';
 import { openModal } from '../../store/actions/ui';
+import { DescriptionStatus } from '../taskEntries/DescriptionStatus';
 
 export const AsideNav = ({ handleClick }) => {
   const { photoURL } = useSelector((state) => state.auth);
-
+  const { activeTodos, totalTodos, finishedTodos } = useSelector(
+    (state) => state.tasks
+  );
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
 
   const dispatch = useDispatch();
@@ -19,7 +22,24 @@ export const AsideNav = ({ handleClick }) => {
       <div className='aside__row'>
         <div className='description'>
           <h1>Tareas</h1>
-          <p>(3 asignadas)</p>
+          <DescriptionStatus
+            icon='fas fa-globe'
+            amount={totalTodos}
+            label='en total.'
+            color='--total'
+          />
+          <DescriptionStatus
+            icon='fas fa-snowboarding'
+            amount={activeTodos}
+            label='activas.'
+            color='--active'
+          />
+          <DescriptionStatus
+            icon='fas fa-clipboard-check'
+            amount={finishedTodos}
+            label='finalizadas.'
+            color='--finished'
+          />
         </div>
         <button className='addTask btn pointer' onClick={handleClick}>
           <i className='fas fa-plus'></i>

@@ -24,4 +24,6 @@ export const types = {
   todosGetSingle: '[todos] Get Single todo',
   todosSetCurrent: '[todos] Set current todo',
   todosLogoutCleaner: '[todos] Logout Cleaner',
+
+  todosCounter: '[todos] count total',
 };

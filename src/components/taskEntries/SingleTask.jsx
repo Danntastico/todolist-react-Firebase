@@ -22,7 +22,6 @@ export const SingleTask = ({
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
   const statusLabel = status === 'activa' ? 'active' : 'finished';
   const handleClick = () => {
-    console.log('Aqui estoy carajo!');
     dispatch(setCurrentTodo(id));
     dispatch(openCloseModal(types.detailsModalIsOpen, true));
   };

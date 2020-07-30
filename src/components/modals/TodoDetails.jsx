@@ -1,21 +1,26 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 import { EditableInput } from '../forms/EditableInput';
 import { EditableTextarea } from '../forms/EditableTextarea';
+import { types } from '../../types/types';
+import { openCloseModal } from '../../store/actions/ui';
 
 export const TodoDetails = () => {
+  const dispatch = useDispatch();
   const { currentTodo } = useSelector((state) => state.tasks);
   const { name, photoURL } = useSelector((state) => state.auth);
   const [inputValues, handleInputChange] = useForm(currentTodo);
   const { id, dueDate, status, description, title } = inputValues;
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
-
+  console.table(inputValues);
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
-  const handleCloseClick = () => {};
+  const handleCloseClick = () => {
+    dispatch(openCloseModal(types.detailsModalIsOpen, false));
+  };
   return (
     <>
       <form className={`detail`} onSubmit={handleSubmit}>

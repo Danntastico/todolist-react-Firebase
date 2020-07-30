@@ -7,6 +7,9 @@ import { types } from '../../types/types';
 const initialState = {
   todos: [],
   currentTodo: null,
+  activeTodos: 0,
+  totalTodos: 0,
+  finishedTodos: 0,
 };
 
 export const todosReducer = (state = initialState, action) => {
@@ -53,6 +56,16 @@ export const todosReducer = (state = initialState, action) => {
         currentTodo: state.todos.filter(
           (item) => item.id === action.payload
         )[0],
+      };
+    case types.todosCounter:
+      return {
+        ...state,
+        activeTodos: state.todos.filter((item) => item.status === 'activa')
+          .length,
+        finishedTodos: state.todos.filter(
+          (item) => item.status === 'Finalizada'
+        ).length,
+        totalTodos: state.todos.length,
       };
     default:
       return state;

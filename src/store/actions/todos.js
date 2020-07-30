@@ -100,3 +100,7 @@ export const setTodo = (todos) => ({
   type: types.todosLoad,
   payload: todos,
 });
+
+export const countTodos = () => ({
+  type: types.todosCounter,
+});

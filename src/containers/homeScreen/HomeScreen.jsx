@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
 
 import { TaskListHeader } from '../../components/taskEntries/TaskListHeader';
 import { SingleTask } from '../../components/taskEntries/SingleTask';
 import { TaskEntries } from '../../components/taskEntries/TaskEntries';
-import { startUpdatingStatus } from '../../store/actions/todos';
 
 import { LoadingView } from '../../components/loadingView/LoadingView';
 import { TodoDetails } from '../../components/modals/TodoDetails';
 import { ModalContainer } from '../../components/modals/ModalContainer';
 import { AddTodoModal } from '../../components/modals/AddTodoModal';
-import moment from 'moment';
+import { startUpdatingStatus, countTodos } from '../../store/actions/todos';
 
 export const HomeScreen = () => {
-  const { todos } = useSelector((state) => state.tasks);
+  const { todos, totalTodos } = useSelector((state) => state.tasks);
+  console.log(totalTodos);
   const { detailsModalIsOpen, addTodoModalIsOpen } = useSelector(
     (state) => state.ui
   );
@@ -34,6 +35,7 @@ export const HomeScreen = () => {
     } else {
       setLoading(false);
     }
+    dispatch(countTodos());
   }, [todos]);
 
   const handleChangeStatus = (id, status) => {
