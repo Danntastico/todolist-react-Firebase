@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 import { EditableInput } from '../forms/EditableInput';
@@ -11,7 +11,7 @@ export const TodoDetails = () => {
   const { currentTodo } = useSelector((state) => state.tasks);
   const { name, photoURL } = useSelector((state) => state.auth);
   const [inputValues, handleInputChange] = useForm(currentTodo);
-  const { id, dueDate, status, description, title } = inputValues;
+  const { dueDate, status, description, title } = inputValues;
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
   console.table(inputValues);
   const handleSubmit = (e) => {

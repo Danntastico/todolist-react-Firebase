@@ -11,10 +11,13 @@ import { TodoDetails } from '../../components/modals/TodoDetails';
 import { ModalContainer } from '../../components/modals/ModalContainer';
 import { AddTodoModal } from '../../components/modals/AddTodoModal';
 import { startUpdatingStatus, countTodos } from '../../store/actions/todos';
+import { EmptyList } from '../../components/loadingView/EmptyList';
 
 export const HomeScreen = () => {
-  const { todos, totalTodos } = useSelector((state) => state.tasks);
-  console.log(totalTodos);
+  const { todos, activeTodos, totalTodos, finishedTodos } = useSelector(
+    (state) => state.tasks
+  );
+
   const { detailsModalIsOpen, addTodoModalIsOpen } = useSelector(
     (state) => state.ui
   );
@@ -49,11 +52,15 @@ export const HomeScreen = () => {
         <LoadingView />
       ) : (
         <>
-          {todos.length === 0 ? (
-            <h1> Aun no tiene tareas </h1>
+          {totalTodos === 0 ? (
+            <EmptyList />
           ) : (
             <div>
-              <TaskListHeader />
+              <TaskListHeader
+                finished={finishedTodos}
+                total={totalTodos}
+                active={activeTodos}
+              />
               <TaskEntries>
                 {sortedTodos.map((todo) => (
                   <SingleTask
