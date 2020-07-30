@@ -9,7 +9,7 @@ export const startGoogleLogin = () => {
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {
-        dispatch(login(user.uid, user.displayName, user.photoURL));
+        dispatch(login(user.uid, user.displayName, user.photoURL, user.email));
       });
   };
 };
@@ -24,7 +24,6 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         dispatch(login(user.uid, user.displayName));
       })
       .catch((e) => {
-        console.log(e);
         Swal.fire('Error', e.message, 'error');
       });
   };
@@ -42,18 +41,20 @@ export const startLoginEmailPassword = (email, password) => {
       })
       .catch((e) => {
         dispatch(finishLoading());
+        Swal.fire('Error', e.message, 'error');
         console.log(e);
       });
   };
 };
 
-export const login = (uid, displayName, photoURL) => {
+export const login = (uid, displayName, photoURL, email) => {
   return {
     type: types.login,
     payload: {
       uid,
       displayName,
       photoURL,
+      email,
     },
   };
 };

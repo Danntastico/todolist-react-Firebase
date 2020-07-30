@@ -5,6 +5,7 @@ import {
   startLoginEmailPassword,
   startGoogleLogin,
 } from '../../store/actions/auth';
+import { Link } from 'react-router-dom';
 
 export const LoginScreen = () => {
   const { loading } = useSelector((state) => state.ui);
@@ -60,6 +61,9 @@ export const LoginScreen = () => {
             <h2 className='googleLogin__label'>Login with google</h2>
           </div>
         </div>
+        <Link to='/auth/register' className='link'>
+          Create new account
+        </Link>
       </form>
     </div>
   );

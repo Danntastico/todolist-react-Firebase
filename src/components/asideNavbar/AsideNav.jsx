@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../store/actions/auth';
 import { openModal } from '../../store/actions/ui';
 import { DescriptionStatus } from '../taskEntries/DescriptionStatus';
+import { gravatar } from '../../utils/gravatar';
 
 export const AsideNav = ({ handleClick }) => {
-  const { photoURL } = useSelector((state) => state.auth);
+  const { photoURL, email } = useSelector((state) => state.auth);
   const { activeTodos, totalTodos, finishedTodos } = useSelector(
     (state) => state.tasks
   );
-  const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
+  const imgsrc = photoURL ? photoURL : gravatar(email);
 
   const dispatch = useDispatch();
   const handleLogout = () => {
