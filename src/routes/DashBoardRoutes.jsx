@@ -4,14 +4,15 @@ import { HomeScreen } from '../containers/homeScreen/HomeScreen';
 import { AsideNav } from '../components/asideNavbar/AsideNav';
 import { TodoDetail } from '../containers/todoDetail/TodoDetail';
 import { useDispatch } from 'react-redux';
-import { openModal } from '../store/actions/ui';
+import { openCloseModal } from '../store/actions/ui';
 import { FloatingBtn } from '../components/floatingBtn/FloatingBtn';
+import { types } from '../types/types';
 
 export const DashboardRoutes = () => {
   const dispatch = useDispatch();
 
   const handleOpenModal = () => {
-    dispatch(openModal());
+    dispatch(openCloseModal(types.addTodoModalIsOpen, true));
   };
   return (
     <>

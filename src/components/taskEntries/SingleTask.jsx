@@ -1,8 +1,8 @@
 import React from 'react';
-import { remainTimeCalculator } from '../../helpers/remainTimeCalculator';
 import { useDispatch } from 'react-redux';
-import { startDeletingTodo } from '../../store/actions/todos';
-import { Link } from 'react-router-dom';
+import { startDeletingTodo, setCurrentTodo } from '../../store/actions/todos';
+import { openModal, openCloseModal } from '../../store/actions/ui';
+import { types } from '../../types/types';
 
 export const SingleTask = ({
   description,
@@ -21,6 +21,12 @@ export const SingleTask = ({
   };
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
   const statusLabel = status === 'activa' ? 'active' : 'finished';
+  const handleClick = () => {
+    console.log('Aqui estoy carajo!');
+    dispatch(setCurrentTodo(id));
+    dispatch(openCloseModal(types.detailsModalIsOpen, true));
+  };
+
   return (
     <div className='taskContainer'>
       <div className='task__header'>
@@ -46,12 +52,11 @@ export const SingleTask = ({
           <i className='fas fa-ellipsis-v menuIcon' />
 
           <div className='menuOptions'>
-            <Link exact={true} to={`/task/${id}`}>
-              <div className='menuOptions_Item'>
-                <i className='fas fa-eye' />
-                <p>Ver tarea</p>
-              </div>
-            </Link>
+            <div className='menuOptions_Item' onClick={handleClick}>
+              <i className='fas fa-eye' />
+              <p>Ver tarea</p>
+            </div>
+
             <div className='menuOptions_Item' onClick={handleDeleteTask}>
               <i className='fas fa-trash' />
               <p>Borrar</p>

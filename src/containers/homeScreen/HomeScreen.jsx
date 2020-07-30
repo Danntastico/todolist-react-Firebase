@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { AddTaskModal } from '../../components/modals/AddTaskModal';
 import { TaskListHeader } from '../../components/taskEntries/TaskListHeader';
 import { SingleTask } from '../../components/taskEntries/SingleTask';
-
-import moment from 'moment';
 import { TaskEntries } from '../../components/taskEntries/TaskEntries';
 import { startUpdatingStatus } from '../../store/actions/todos';
-import { closeModal, openModal } from '../../store/actions/ui';
+
 import { LoadingView } from '../../components/loadingView/LoadingView';
+import { TodoDetails } from '../../components/modals/TodoDetails';
+import { ModalContainer } from '../../components/modals/ModalContainer';
+import { AddTodoModal } from '../../components/modals/AddTodoModal';
+import moment from 'moment';
 
 export const HomeScreen = () => {
   const { todos } = useSelector((state) => state.tasks);
+  const { detailsModalIsOpen, addTodoModalIsOpen } = useSelector(
+    (state) => state.ui
+  );
   const { name, photoURL } = useSelector((state) => state.auth);
-  const { modalIsOpen } = useSelector((state) => state.ui);
 
   const sortedTodos = todos.sort((i) => i.status);
   const [loading, setLoading] = useState(true);
-  const [realTime, setRealTime] = useState(moment(), 'YYYY-MM-DD hh:mm:ss');
+  const [currentTime, setCurrentTime] = useState(
+    moment(),
+    'YYYY-MM-DD hh:mm:ss'
+  );
 
   const dispatch = useDispatch();
 
@@ -33,13 +39,6 @@ export const HomeScreen = () => {
   const handleChangeStatus = (id, status) => {
     const targetTodo = todos.filter((i) => i.id === id);
     dispatch(startUpdatingStatus(id, targetTodo[0], status));
-  };
-
-  const handleCloseModal = () => {
-    dispatch(closeModal());
-  };
-  const handleOpenModal = () => {
-    dispatch(openModal());
   };
 
   return (
@@ -64,13 +63,14 @@ export const HomeScreen = () => {
                   />
                 ))}
               </TaskEntries>
-              <AddTaskModal
-                modalIsOpen={modalIsOpen}
-                closeModal={handleCloseModal}
-                currentTime={realTime.format('yyyy-MM-DDThh:mm')}
-              />
             </div>
           )}
+          <ModalContainer modalIsOpen={detailsModalIsOpen}>
+            <TodoDetails />
+          </ModalContainer>
+          <ModalContainer modalIsOpen={addTodoModalIsOpen}>
+            <AddTodoModal currentTime={currentTime} />
+          </ModalContainer>
         </>
       )}
     </>

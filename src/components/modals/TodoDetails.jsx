@@ -1,31 +1,22 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
-import { useDispatch, useSelector } from 'react-redux';
-import { EditableInput } from '../../components/forms/EditableInput';
+import { EditableInput } from '../forms/EditableInput';
 
-export const TodoDetail = () => {
-  const myModal = useRef(false);
-  const dispatch = useDispatch();
+export const TodoDetails = () => {
   const { currentTodo } = useSelector((state) => state.tasks);
-  const { modalIsOpen } = useSelector((state) => state.ui);
   const [inputValues, handleInputChange] = useForm(currentTodo);
 
   const photoURL = '';
   const imgsrc = photoURL ? photoURL : 'assets/profilepic.png';
-  useEffect(() => {
-    if (modalIsOpen) {
-      myModal.current.style.display = 'block';
-    } else {
-      myModal.current.style.display = 'none';
-    }
-  }, [modalIsOpen]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   const handleCloseClick = () => {};
   return (
-    <div ref={myModal} className='detail'>
+    <>
       <form className={`detail__content`} onSubmit={handleSubmit}>
         <button onClick={handleCloseClick}>close</button>
         <div className='detail__info'>
@@ -66,6 +57,6 @@ export const TodoDetail = () => {
           <p className='detail__author'>{/* author */}</p>
         </div>
       </form>
-    </div>
+    </>
   );
 };

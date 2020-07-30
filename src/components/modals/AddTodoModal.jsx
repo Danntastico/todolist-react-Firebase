@@ -1,12 +1,12 @@
 import React from 'react';
-import Modal from 'react-modal';
 import { useForm } from '../../hooks/useForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { setError, removeError } from '../../store/actions/ui';
+import { setError, removeError, openCloseModal } from '../../store/actions/ui';
 import { ErrorMsg } from '../errorMsg/ErrorMsg';
 import { startNewTodo } from '../../store/actions/todos';
+import { types } from '../../types/types';
 
-export const AddTaskModal = ({ modalIsOpen, closeModal, currentTime }) => {
+export const AddTodoModal = ({ currentTime }) => {
   const { msgError } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
   const [formValues, handleInputChange, reset] = useForm({
@@ -25,6 +25,11 @@ export const AddTaskModal = ({ modalIsOpen, closeModal, currentTime }) => {
       reset();
     }
   };
+
+  const closeModal = () => {
+    dispatch(openCloseModal(types.addTodoModalIsOpen, false));
+  };
+
   const formValidator = () => {
     if (taskTitle.trim().length === 0) {
       dispatch(setError('Agrega un titulo a tu tarea'));
@@ -39,16 +44,9 @@ export const AddTaskModal = ({ modalIsOpen, closeModal, currentTime }) => {
     dispatch(removeError());
     return true;
   };
-  Modal.setAppElement('#root');
   return (
-    <Modal
-      isOpen={modalIsOpen}
-      onRequestClose={closeModal}
-      contentLabel='Add a todo'
-      shouldCloseOnOverlayClick={false}
-      className='modal'
-    >
-      <h1 className='modal__title'>Add a new Task</h1>
+    <div className='addtodo'>
+      <h1 className='addtodo__title'>Add a new Task</h1>
       {msgError && <ErrorMsg message={msgError} />}
       <form className='addForm' onSubmit={handleSubmit}>
         <input
@@ -84,22 +82,22 @@ export const AddTaskModal = ({ modalIsOpen, closeModal, currentTime }) => {
           <option value='Finalizada' />
         </datalist>
       </form>
-      <div className='modal__content--btns'>
+      <div className='addtodo__content--btns'>
         <button
           type='submit'
-          className='modal__btn btn submit'
+          className='addtodo__btn btn submit'
           onClick={handleSubmit}
         >
           Agregar Tarea
         </button>
         <button
           type='button'
-          className='modal__btn btn close'
+          className='addtodo__btn btn close'
           onClick={closeModal}
         >
           Cancelar
         </button>
       </div>
-    </Modal>
+    </div>
   );
 };

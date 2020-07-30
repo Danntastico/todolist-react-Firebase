@@ -1,19 +1,12 @@
-.modal {
+.addtodo {
   @extend %box-shadow;
   background-color: $bg-color;
   border-radius: 20px;
-  position: absolute;
-  top: 50%;
-  right: 50%;
-  transform: translate(50%, -50%);
   padding: 20px;
-  width: 300px;
+  width: inherit;
   outline: none;
-  @media screen and (min-width: $break-medium) {
-    width: 550px;
-  }
 }
-.modal__title {
+.addtodo__title {
   font-size: 26px;
   color: $titles-color;
 }
@@ -45,18 +38,15 @@
   background: none;
   border: none;
   border-bottom: solid 1px $green-color;
-  @media screen and (min-width: $break-medium) {
-    width: 470px;
-  }
   padding: 10px 7px;
   margin-bottom: 20px;
 }
-.modal__content--btns {
+.addtodo__content--btns {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.modal__btn {
+.addtodo__btn {
   @extend %box-shadow;
   margin: 5px;
   padding: 8px 10px;
