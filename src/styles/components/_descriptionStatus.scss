@@ -1,11 +1,11 @@
 .status__item {
-  font-size: 5vw;
+  font-size: 26px;
   .item__label {
     display: none;
     padding: 0px 5px;
   }
   @media screen and (min-width: $break-small) {
-    font-size: 2vw;
+    font-size: 18px;
     .item__label {
       display: block;
     }

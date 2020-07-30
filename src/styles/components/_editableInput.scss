@@ -13,10 +13,9 @@
 .editable__label-disabled {
   font-weight: 700;
   transition: 0.4s;
-  font-size: 3.5vw;
+  font-size: 20px;
   color: $titles-color;
   @media screen and(min-width: $break-medium) {
-    font-size: 30px;
   }
 }
 .editable__label {
@@ -33,7 +32,7 @@
   width: 100%;
   background: none;
   border-style: none;
-  font-weight: 700;
+  font-weight: 200;
   color: $text-color;
   font-size: 2.5vw;
   @media screen and (min-width: $break-medium) {
